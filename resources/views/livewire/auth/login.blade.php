@@ -10,18 +10,33 @@
                         <div class="login-right-wrap">
                             <h1>Login</h1>
                             <p class="account-subtitle">Access to our dashboard</p>
-                            <form action="https://preschool.dreamguystech.com/html-template/index.html">
+                            <form wire:submit = "login">
+                                @if ($errorMessage)
+                                    <span class="text-sm text-danger">{{ $errorMessage }}</span>
+                                @endif
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Email">
+                                    <input wire:model = "email" class="form-control" type="email" placeholder="Email">
+                                    @error('email')
+                                        <span class="text-sm text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Password">
+                                    <input wire:model = "password" class="form-control" type="password"
+                                        placeholder="Password">
+                                    @error('password')
+                                        <span class="text-sm text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-primary btn-block" type="submit">Login</button>
+                                    <button class="btn btn-primary  btn-block" type="submit">
+                                        <span wire:loading.remove>Login</span>
+                                        <div wire:loading>
+                                            <span wire:loading>Loading...</span>
+                                        </div>
+                                    </button>
                                 </div>
                             </form>
-                            <div class="text-center forgotpass"><a href="forgot-password.html">Forgot Password?</a>
+                            <div class="text-center forgotpass"><a href="#">Forgot Password?</a>
                             </div>
                             {{-- <div class="login-or">
                                 <span class="or-line"></span>
