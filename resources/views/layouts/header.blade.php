@@ -36,7 +36,8 @@
                                 <a href="#">
                                     <div class="media">
                                         <span class="avatar avatar-sm">
-                                            <img class="avatar-img rounded-circle" alt="User Image" src="{{ asset('assets/img/profiles/avatar-11.jpg') }}">
+                                            <img class="avatar-img rounded-circle" alt="User Image"
+                                                src="{{ asset('assets/img/profiles/avatar-11.jpg') }}">
                                         </span>
                                         <div class="media-body">
                                             <p class="noti-details"><span class="noti-title">Carlson Tech</span> has
@@ -122,8 +123,9 @@
                             <p class="text-muted mb-0">{{ auth()->user()->getRoleNames()->first() }}</p>
                         </div>
                     </div>
-                    <a class="dropdown-item" href="profile.html">My Profile</a>
-                    <a class="dropdown-item" href="inbox.html">Inbox</a>
+                    <a class="dropdown-item" href="{{ route('profile', auth()->user()->id) }}" wire:navigate>My
+                        Profile</a>
+                    {{-- <a class="dropdown-item" href="inbox.html">Inbox</a> --}}
                     <livewire:auth.logout />
                 </div>
             </li>

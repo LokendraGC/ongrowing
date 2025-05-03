@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Logout;
+use App\Livewire\Profile;
 use App\Livewire\Users\UserCreate;
 use App\Livewire\Users\UserEdit;
 use App\Livewire\Users\UserIndex;
@@ -29,6 +30,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // profile
+    Route::get('profile/{id}', Profile::class)->name('profile');
+
+    // user
+    Route::get('/edit-user/{id}', UserEdit::class)->name('user.edit');
+    Route::get('/users', UserIndex::class)->name('user.index');
 });
 
 

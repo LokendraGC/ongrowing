@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
 #[Layout('layouts.app')]
@@ -44,8 +45,8 @@ class UserEdit extends Component
             'name' => $user->name,
             'email' => $user->email,
             'phone' => $user->phone ?? '',
-            'dob' => $this->dob === '' ? null : $this->dob,
-            'join_date' => $this->join_date === '' ? null : $this->join_date,
+            'dob' => $user->dob ?? null,
+            'join_date' => $user->join_date ?? null,
             'temp_address' => $user->temp_address ?? '',
             'permanent_address' => $user->permanent_address ?? '',
             'profile' => $user->profile ?? '',
@@ -55,12 +56,25 @@ class UserEdit extends Component
 
     public function editUser()
     {
-        $this->validate([
+        // Validate basic fields
+        $data = $this->validate([
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users,email,' . $this->user->id,
-            'profile' => 'nullable|image|max:1024',
+            'phone' => 'nullable|string',
+            'dob' => 'nullable|date',
+            'join_date' => 'nullable|date',
+            'temp_address' => 'nullable|string',
+            'permanent_address' => 'nullable|string',
         ]);
 
+        // Only validate profile if it's a new upload
+        if ($this->profile instanceof TemporaryUploadedFile) {
+            $this->validate([
+                'profile' => 'image|max:1024',
+            ]);
+        }
+
+        // Password validation
         if ($this->new_password) {
             if (!Hash::check($this->old_password, $this->user->password)) {
                 $this->addError('old_password', 'Old password is incorrect.');
@@ -72,10 +86,16 @@ class UserEdit extends Component
             ]);
         }
 
-        $profilePath = $this->user->profile;
+        $profilePath = $this->user->profile; // Keep existing by default
 
-        if ($this->profile && is_object($this->profile)) {
+        // Handle new file upload
+        if ($this->profile instanceof TemporaryUploadedFile) {
             try {
+                // Delete old profile image if exists
+                if ($this->user->profile && Storage::disk('public')->exists($this->user->profile)) {
+                    Storage::disk('public')->delete($this->user->profile);
+                }
+
                 $profilePath = $this->profile->store('profiles', 'public');
             } catch (\Exception $e) {
                 $this->toastError("File upload failed: " . $e->getMessage());
