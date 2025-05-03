@@ -11,9 +11,7 @@
                             <h1>Login</h1>
                             <p class="account-subtitle">Access to our dashboard</p>
                             <form wire:submit = "login">
-                                @if ($errorMessage)
-                                    <span class="text-sm text-danger">{{ $errorMessage }}</span>
-                                @endif
+
                                 <div class="form-group">
                                     <input wire:model = "email" class="form-control" type="email" placeholder="Email">
                                     @error('email')

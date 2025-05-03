@@ -5,8 +5,9 @@ namespace App\Livewire\Auth;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Traits\HasToastNotifications;
-use Masmerise\Toaster\Toaster;
+use Livewire\Attributes\Layout;
 
+#[Layout('layouts.guest')]
 class Login extends Component
 {
     use HasToastNotifications;

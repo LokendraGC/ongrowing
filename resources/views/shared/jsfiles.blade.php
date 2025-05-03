@@ -5,6 +5,10 @@
 <script src="{{ asset('assets/plugins/apexchart/apexcharts.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/apexchart/chart-data.js') }}"></script>
 <script src="{{ asset('assets/js/script.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+
 
 <script type="text/javascript">
     document.addEventListener("toast.success", event => {
@@ -12,5 +16,5 @@
     });
     document.addEventListener("toast.error", event => {
         toastr.error(event.detail.message);
-    }); 
+    });
 </script>

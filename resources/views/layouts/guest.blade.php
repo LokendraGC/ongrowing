@@ -13,24 +13,9 @@
 </head>
 
 <body>
-    <div class="main-wrapper">
 
-        @include('layouts.header')
+    {{ $slot }}
 
-        @include('layouts.sidebar')
-
-        <div class="page-wrapper">
-
-            @hasSection('main-content')
-                @yield('main-content')
-            @else
-                {{ $slot }}
-            @endif
-
-            @include('layouts.footer')
-
-        </div>
-    </div>
 
 </body>
 

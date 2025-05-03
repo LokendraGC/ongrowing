@@ -1,10 +1,10 @@
 <div>
     <div class="header">
         <div class="header-left">
-            <a href="index.html" class="logo">
+            <a href="{{ route('dashboard') }}" class="logo">
                 <img src="assets/img/logo.png" alt="Logo">
             </a>
-            <a href="index.html" class="logo logo-small">
+            <a href="{{ route('dashboard') }}" class="logo logo-small">
                 <img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
             </a>
         </div>
@@ -83,7 +83,7 @@
                                 </a>
                             </li>
                             <li class="notification-message">
-                                <a href="#">
+                                <a href="{{ url('/') }}">
                                     <div class="media">
                                         <span class="avatar avatar-sm">
                                             <img class="avatar-img rounded-circle" alt="User Image"
