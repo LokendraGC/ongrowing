@@ -18,10 +18,11 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('profile')->nullable();
-            $table->string('qualification')->nullable();
+            $table->string('temp_address')->nullable();
+            $table->string('permanent_address')->nullable();
             $table->date('dob')->nullable();
+            $table->date('join_date')->nullable();
             $table->string('phone')->nullable();
-            $table->string('address')->nullable();
             $table->decimal('balance', 10, 2)->default(0);
             $table->rememberToken();
             $table->timestamps();
