@@ -14,7 +14,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <form wire:submit="createUser" enctype="multipart/form-data">
+                    <form wire:submit.prevent="createUser" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-12">
                                 <h5 class="form-title"><span>User Information</span></h5>
@@ -89,7 +89,7 @@
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <label>User Profile</label>
-                                    <input wire:model="profile" type="file" class="form-control">
+                                    <input wire:model.live="profile" type="file" class="form-control">
                                     @error('profile')
                                     <span class="text-sm text-danger">{{ $message }}</span>
                                 @enderror

@@ -5,6 +5,7 @@ namespace App\Livewire\Users;
 use App\Models\User;
 use App\Traits\HasToastNotifications;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Illuminate\Validation\Rules;
@@ -14,7 +15,7 @@ use Livewire\WithFileUploads;
 class UserCreate extends Component
 {
 
-    use HasToastNotifications, WithFileUploads ;
+    use HasToastNotifications, WithFileUploads;
 
     public $name = '';
     public $email = '';
@@ -35,18 +36,33 @@ class UserCreate extends Component
             'name' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-            'profile' => 'image|max:1024',
+            'profile' => 'nullable|image|max:1024',
         ]);
 
-        $path = $this->profile->store('profiles', 'public');
+        $profilePath = null;
+        if ($this->profile) {
+            try {
+                $profilePath = $this->profile->store('profiles', 'public');
+
+                if (!Storage::disk('public')->exists($profilePath)) {
+                    throw new \Exception("File failed to store");
+                }
+            } catch (\Exception $e) {
+                $this->toastError("File upload failed: " . $e->getMessage());
+                return;
+            }
+        }
+
+        // dd($profilePath);
 
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'profile' => $path,
-            'dob' => $this->dob,
-            'join_date' => $this->join_date,
+            'profile' => $profilePath,
+            'dob' => $this->dob ?: null,
+            'join_date' => $this->join_date ?: null,
+            'phone' => $this->phone,
             'temp_address' => $this->temp_address,
             'permanent_address' => $this->permanent_address,
         ]);
@@ -56,7 +72,6 @@ class UserCreate extends Component
         $this->toastSuccess("User Created in Successfully");
 
         return redirect()->route('user.index');
-
     }
 
 
