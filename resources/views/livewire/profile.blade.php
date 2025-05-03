@@ -28,7 +28,7 @@
                         {{-- <div class="about-text">Lorem ipsum dolor sit amet.</div> --}}
                     </div>
                     <div class="col-auto profile-btn">
-                        <a href="{{ route('user.edit', $user->id) }}" wire:navigate class="btn btn-primary">
+                        <a href="{{ route('edit.profile', $user->id) }}" wire:navigate class="btn btn-primary">
                             Edit
                         </a>
                     </div>

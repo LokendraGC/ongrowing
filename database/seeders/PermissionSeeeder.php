@@ -16,9 +16,9 @@ class PermissionSeeeder extends Seeder
             'add.payment',
             'edit.payment',
             'delete.payment',
-            'add.role',
-            'edit.role',
-            'delete.role',
+            'add.user',
+            'edit.user',
+            'delete.user',
         ];
 
         foreach ($permissions as $key => $value) {

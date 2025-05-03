@@ -9,11 +9,13 @@
                     <li class="breadcrumb-item active">Fees Collections</li>
                 </ul>
             </div>
-            <div class="col-auto text-right float-right ml-auto">
-                <a href="{{ route('user.create') }}" wire:navigate class="btn btn-outline-primary mr-2"><i
-                        class="fas fa-create"></i> Create</a>
-                {{-- <a href="add-fees-collection.html" class="btn btn-primary"><i class="fas fa-plus"></i></a> --}}
-            </div>
+            @can('add.user')
+                <div class="col-auto text-right float-right ml-auto">
+                    <a href="{{ route('user.create') }}" wire:navigate class="btn btn-outline-primary mr-2"><i
+                            class="fas fa-create"></i> Create</a>
+                    {{-- <a href="add-fees-collection.html" class="btn btn-primary"><i class="fas fa-plus"></i></a> --}}
+                </div>
+            @endcan
         </div>
     </div>
 
@@ -29,7 +31,9 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
-                                    <th class="text-center">Action</th>
+                                    @can('add.user')
+                                        <th class="text-center">Action</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,13 +50,15 @@
                                         </td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->getRoleNames()->first() }}</td>
-                                        <td class="text-center">
-                                            <a href="{{ route('user.edit', $user->id) }}" wire:navigate
-                                                class="badge badge-success border-0 px-4 py-2">Edit</a>
-                                            <button wire:click="$set('confirmingDelete', {{ $user->id }})"
-                                                type="submit"
-                                                class="badge badge-success border-0 px-3 py-2">Delete</button>
-                                        </td>
+                                        @can('add.user')
+                                            <td class="text-center">
+                                                <a href="{{ route('user.edit', $user->id) }}" wire:navigate
+                                                    class="badge badge-success border-0 px-4 py-2">Edit</a>
+                                                <button wire:click="$set('confirmingDelete', {{ $user->id }})"
+                                                    type="submit"
+                                                    class="badge badge-success border-0 px-3 py-2">Delete</button>
+                                            </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
 
