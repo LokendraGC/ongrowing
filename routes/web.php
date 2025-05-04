@@ -4,6 +4,10 @@ use App\Http\Controllers\DashboardController;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Logout;
 use App\Livewire\EditProfile;
+use App\Livewire\Payments\PaymentCreate;
+use App\Livewire\Payments\PaymentEdit;
+use App\Livewire\Payments\PaymentIndex;
+use App\Livewire\Payments\Status;
 use App\Livewire\Profile;
 use App\Livewire\Users\UserCreate;
 use App\Livewire\Users\UserEdit;
@@ -25,6 +29,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/{id}', Profile::class)->name('profile');
     Route::get('/edit-profile/{id}', EditProfile::class)->name('edit.profile');
 
+    // payments
+    Route::get('pay', PaymentCreate::class)->name('pay.add');
+    Route::get('transactions', PaymentIndex::class)->name('pay.index');
+    Route::get('status', Status::class)->name('pay.status');
+    Route::get('edit-payment/{id}', PaymentEdit::class)->name('pay.edit');
+
     // Admin-only routes
     Route::middleware('role:admin')->group(function () {
         Route::get('/users', UserIndex::class)->name('user.index');
@@ -33,8 +43,5 @@ Route::middleware('auth')->group(function () {
     });
 
     // User-only routes (if different from admin, otherwise skip this)
-    Route::middleware('role:user')->group(function () {
-        // Add user-only specific routes here (if needed)
-        // Avoid duplicating routes already accessible to admin
-    });
+    Route::middleware('role:user')->group(function () {});
 });

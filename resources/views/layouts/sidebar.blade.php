@@ -7,23 +7,25 @@
                         <span>Main Menu</span>
                     </li>
                     <li class="{{ request()->routeIs('dashboard') ? 'submenu active' : '' }}">
-                        <a href="{{ route('dashboard') }}" wire:navigate><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
+                        <a href="{{ route('dashboard') }}" wire:navigate><i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span></a>
                     </li>
-                    <li>
+                    <li class="submenu {{ request()->routeIs('pay.*') ? 'active' : '' }}">
                         <a href="#"><i class="fas fa-comment-dollar"></i> <span>Payment Detail</span> <span
                                 class="menu-arrow"></span></a>
-                        <ul>
-                            <li><a href="index.html" class="">Pay</a></li>
-                            <li><a href="student-dashboard.html">Transactions</a></li>
+                        <ul style="{{ request()->routeIs('pay.*') ? 'display: block;' : '' }}">
+                            <li><a class="{{ request()->routeIs('pay.add') ? 'active' : '' }}" href="{{ route('pay.add') }}" wire:navigate class="submenu">Pay</a></li>
+                            <li><a class="{{ request()->routeIs('pay.index') ? 'active' : '' }}" href="{{ route('pay.index') }}" wire:navigate class="submenu">Transactions</a></li>
+                            <li><a class="{{ request()->routeIs('pay.status') ? 'active' : '' }}" href="{{ route('pay.status') }}" wire:navigate class="submenu">Status</a></li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="fees.html"><i class="fas fa-comment-dollar"></i> <span>Calculator</span></a>
+                        <a href="fees.html"><i class="fas fa-calculator"></i> <span>Calculator</span></a>
                     </li>
                     <li class="submenu {{ request()->routeIs('user.*') ? 'active' : '' }}">
                         <a href="#">
-                            <i class="fas fa-comment-dollar"></i>
+                            <i class="fas fa-users"></i>
                             <span>Users</span>
                             <span class="menu-arrow"></span>
                         </a>
@@ -34,12 +36,14 @@
                                     All Users
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ route('user.create') }}" wire:navigate
-                                    class="{{ request()->routeIs('user.create') ? 'active' : '' }}">
-                                    Add User
-                                </a>
-                            </li>
+                            @hasrole('admin')
+                                <li>
+                                    <a href="{{ route('user.create') }}" wire:navigate
+                                        class="{{ request()->routeIs('user.create') ? 'active' : '' }}">
+                                        Add User
+                                    </a>
+                                </li>
+                            @endhasrole
                         </ul>
                     </li>
 
