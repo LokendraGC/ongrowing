@@ -4,6 +4,7 @@ namespace App\Livewire\Payments;
 
 use App\Models\Payment;
 use App\Traits\HasToastNotifications;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -18,7 +19,7 @@ class PaymentIndex extends Component
 
     public function mount()
     {
-        $this->payments = Payment::all();
+        $this->payments = Payment::where('user_id', Auth::id())->latest()->get();
     }
 
     public function confirmDelete()

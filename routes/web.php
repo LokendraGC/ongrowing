@@ -32,7 +32,6 @@ Route::middleware('auth')->group(function () {
     // payments
     Route::get('pay', PaymentCreate::class)->name('pay.add');
     Route::get('transactions', PaymentIndex::class)->name('pay.index');
-    Route::get('status', Status::class)->name('pay.status');
     Route::get('edit-payment/{id}', PaymentEdit::class)->name('pay.edit');
 
     // Admin-only routes
@@ -40,6 +39,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/users', UserIndex::class)->name('user.index');
         Route::get('/add-user', UserCreate::class)->name('user.create');
         Route::get('/edit-user/{id}', UserEdit::class)->name('user.edit');
+        Route::get('status', Status::class)->name('pay.status');
     });
 
     // User-only routes (if different from admin, otherwise skip this)

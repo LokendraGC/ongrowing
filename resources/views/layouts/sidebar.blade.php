@@ -14,9 +14,14 @@
                         <a href="#"><i class="fas fa-comment-dollar"></i> <span>Payment Detail</span> <span
                                 class="menu-arrow"></span></a>
                         <ul style="{{ request()->routeIs('pay.*') ? 'display: block;' : '' }}">
-                            <li><a class="{{ request()->routeIs('pay.add') ? 'active' : '' }}" href="{{ route('pay.add') }}" wire:navigate class="submenu">Pay</a></li>
-                            <li><a class="{{ request()->routeIs('pay.index') ? 'active' : '' }}" href="{{ route('pay.index') }}" wire:navigate class="submenu">Transactions</a></li>
-                            <li><a class="{{ request()->routeIs('pay.status') ? 'active' : '' }}" href="{{ route('pay.status') }}" wire:navigate class="submenu">Status</a></li>
+                            <li><a class="{{ request()->routeIs('pay.add') ? 'active' : '' }}"
+                                    href="{{ route('pay.add') }}" wire:navigate class="submenu">Pay</a></li>
+                            <li><a class="{{ request()->routeIs('pay.index') ? 'active' : '' }}"
+                                    href="{{ route('pay.index') }}" wire:navigate class="submenu">Transactions</a></li>
+                            @hasrole('admin')
+                                <li><a class="{{ request()->routeIs('pay.status') ? 'active' : '' }}"
+                                        href="{{ route('pay.status') }}" wire:navigate class="submenu">Status</a></li>
+                            @endhasrole
                         </ul>
                     </li>
 
