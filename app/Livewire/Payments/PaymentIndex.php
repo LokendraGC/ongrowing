@@ -4,6 +4,7 @@ namespace App\Livewire\Payments;
 
 use App\Models\Payment;
 use App\Traits\HasToastNotifications;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -16,10 +17,25 @@ class PaymentIndex extends Component
 
     public $payments;
     public $confirmingDelete = null;
+    public $payment = '';
 
     public function mount()
     {
         $this->payments = Payment::where('user_id', Auth::id())->latest()->get();
+    }
+
+    public function download()
+    {
+        $payments = $this->payments;
+
+        $data = [
+            'to' => Auth::user()->name,
+            'payments' => $payments,
+        ];
+
+        return response()->streamDownload(function () use ($data) {
+            echo Pdf::loadView('transactions', $data)->stream();
+        }, 'transactions_' . Auth::user()->name . '.pdf');
     }
 
     public function confirmDelete()

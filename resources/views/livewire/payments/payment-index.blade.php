@@ -10,8 +10,10 @@
                 </ul>
             </div>
             <div class="col-auto text-right float-right ml-auto">
-                <a href="{{ route('pay.add') }}" wire:navigate class="btn btn-outline-primary mr-2"><i class="fas fa-plus"></i> Pay</a>
-                <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+                <a href="{{ route('pay.add') }}" wire:navigate class="btn btn-outline-primary mr-2"><i
+                        class="fas fa-plus"></i> Pay</a>
+                <a href="#" wire:click = "download" class="btn btn-outline-primary mr-2"><i
+                        class="fas fa-download"></i> Download</a>
                 {{-- <a href="add-fees-collection.html" class="btn btn-primary"><i class="fas fa-plus"></i></a> --}}
             </div>
         </div>

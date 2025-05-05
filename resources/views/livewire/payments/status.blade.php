@@ -3,14 +3,14 @@
     <div class="page-header">
         <div class="row align-items-center">
             <div class="col">
-                <h3 class="page-title">Fees Collections</h3>
+                <h3 class="page-title">All Transactions</h3>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Fees Collections</li>
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" wire:navigate>Dashboard</a></li>
+                    <li class="breadcrumb-item active">All Transactions</li>
                 </ul>
             </div>
             <div class="col-auto text-right float-right ml-auto">
-                <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+                <a wire:click = "downloadAll" href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
                 {{-- <a href="add-fees-collection.html" class="btn btn-primary"><i class="fas fa-plus"></i></a> --}}
             </div>
         </div>

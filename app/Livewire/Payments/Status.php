@@ -4,8 +4,11 @@ namespace App\Livewire\Payments;
 
 use App\Models\Payment;
 use App\Traits\HasToastNotifications;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 #[Layout('layouts.app')]
 class Status extends Component
@@ -28,6 +31,19 @@ class Status extends Component
 
             $this->toastSuccess('Status Updated Successfully');
         }
+    }
+
+    public function downloadAll()
+    {
+        $transactions = $this->transactions;
+        $data = [
+            'to' => Auth::user()->name,
+            'transactions' => $transactions
+        ];
+
+        return response()->streamDownload(function () use ($data) {
+            echo Pdf::loadView('all_transactions', $data)->stream();
+        }, 'transactions_' . Auth::user()->name . '.pdf');
     }
 
 
