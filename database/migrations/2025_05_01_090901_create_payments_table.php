@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->decimal('amount', 10, 2);
+            $table->decimal('amount', 10, 2)->nullable();
+            $table->decimal('temp_amount', 10, 2)->nullable();
             $table->string('slip');
             $table->enum('status', ['pending', 'approved'])->default('pending');
             $table->date('date_of_transaction');

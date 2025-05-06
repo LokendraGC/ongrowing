@@ -10,7 +10,8 @@
                 </ul>
             </div>
             <div class="col-auto text-right float-right ml-auto">
-                <a wire:click = "downloadAll" href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+                <a wire:click = "downloadAll" href="#" class="btn btn-outline-primary mr-2"><i
+                        class="fas fa-download"></i> Download</a>
                 {{-- <a href="add-fees-collection.html" class="btn btn-primary"><i class="fas fa-plus"></i></a> --}}
             </div>
         </div>
@@ -45,7 +46,8 @@
                                             </h2>
                                         </td>
                                         <td>{{ $transaction->pay_date }}</td>
-                                        <td>{{ $transaction->amount }}</td>
+                                        <td>{{ $transaction->status == 'paid' ? $transaction->amount : $transaction->temp_amount }}
+                                        </td>
                                         <td class="text-right">
                                             {{-- <span class="badge badge-success">Paid</span> --}}
                                             <div class="form-group">

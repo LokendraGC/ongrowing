@@ -46,7 +46,8 @@
                                                         alt="User Image"></a>
                                             </h2>
                                         </td>
-                                        <td>{{ $payment->amount }}</td>
+                                        <td>{{ $payment->status == 'paid' ? $payment->amount : $payment->temp_amount }}
+                                        </td>
                                         <td>{{ $payment->pay_date }}</td>
                                         @if ($payment->status == 'pending')
                                             <td class="text-right">

@@ -44,7 +44,7 @@ class PaymentCreate extends Component
 
         Payment::create([
             'user_id' => Auth::id(),
-            "amount" => $data['amount'],
+            "temp_amount" => $data['amount'],
             'pay_date' => $data['pay_date'],
             'slip' => $slipPath,
         ]);

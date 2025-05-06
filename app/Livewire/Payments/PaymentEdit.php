@@ -28,9 +28,10 @@ class PaymentEdit extends Component
         $payment = Payment::find($id);
 
         $this->payment = $payment;
+        $actual_amt =  $payment->status == 'paid' ? $payment->amount : $payment->temp_amount;
 
         $this->fill([
-            'amount' => $payment->amount,
+            'amount' => $actual_amt,
             'pay_date' => $payment->pay_date,
             'slip' => $payment->slip ?? '',
         ]);
@@ -40,7 +41,6 @@ class PaymentEdit extends Component
     {
         $this->validate([
             'amount' => 'required|numeric',
-            'slip' => 'required|image|max:1024',
             'pay_date' => 'required|date',
         ]);
 
@@ -69,9 +69,10 @@ class PaymentEdit extends Component
 
         $this->payment->update([
             "user_id" => Auth::id(),
-            "amount" => $this->amount,
+            "temp_amount" => $this->amount,
             "pay_date" => $this->pay_date,
             "slip" => $slipPath,
+            "status" => 'pending'
         ]);
 
         $this->toastSuccess('Payment Updated Successfully');

@@ -19,7 +19,7 @@ class Status extends Component
 
     public function mount()
     {
-        $this->transactions = Payment::all();
+        $this->transactions = Payment::latest()->get();
     }
 
     public function updateStatus($transactionId, $status)
@@ -27,6 +27,11 @@ class Status extends Component
         $transaction = Payment::find($transactionId);
         if ($transaction) {
             $transaction->status = $status;
+
+            if ($status == 'paid' && $transaction->temp_amount != null) {
+                $transaction->amount = $transaction->temp_amount;
+            }
+
             $transaction->save();
 
             $this->toastSuccess('Status Updated Successfully');
