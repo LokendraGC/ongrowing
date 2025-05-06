@@ -79,9 +79,9 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-6">
-                                <h5 class="card-title">Revenue</h5>
+                                <h5 class="card-title">Monthly Revenue</h5>
                             </div>
-                            <div class="col-6">
+                            {{-- <div class="col-6">
                                 <ul class="list-inline-group text-right mb-0 pl-0">
                                     <li class="list-inline-item">
                                         <div class="form-group mb-0 amount-spent-select">
@@ -93,7 +93,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="card-body">
@@ -135,4 +135,9 @@
         </div>
 
     </div>
+
+    <script>
+        const months = @json($months);
+        const totals = @json($totals);
+    </script>
 @endsection
