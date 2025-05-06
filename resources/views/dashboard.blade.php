@@ -106,9 +106,9 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-6">
-                                <h5 class="card-title">Number of Students</h5>
+                                <h5 class="card-title">Scan QR to Pay</h5>
                             </div>
-                            <div class="col-6">
+                            {{-- <div class="col-6">
                                 <ul class="list-inline-group text-right mb-0 pl-0">
                                     <li class="list-inline-item">
                                         <div class="form-group mb-0 amount-spent-select">
@@ -120,12 +120,15 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </div>
-                            
+                            </div> --}}
+
                         </div>
                     </div>
                     <div class="card-body">
-                        <div id="bar"></div>
+                        {{-- <div id="bar"></div> --}}
+                        <img src="{{ asset('assets/img/nepal_bank.jpeg') }}" alt="Logo" class="responsive-img"
+                            height="375">
+
                     </div>
                 </div>
             </div>

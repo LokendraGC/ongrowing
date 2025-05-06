@@ -35,7 +35,7 @@
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $payment->pay_date }}</td>
                     <td>{{ $payment->user->name }}</td>
-                    <td>{{ $payment->amount }}</td>
+                    <td>{{ $payment->status == 'paid' ? $payment->amount : $payment->temp_amount }}</td>
                     <td>{{ ucfirst($payment->status) }}</td>
                 </tr>
             @endforeach

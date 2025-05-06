@@ -2,13 +2,14 @@
 
 namespace App\Livewire\Payments;
 
+use App\Mail\PaymentApprovedMail;
 use App\Models\Payment;
 use App\Traits\HasToastNotifications;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Barryvdh\DomPDF\Facade\Pdf;
-
+use Illuminate\Support\Facades\Mail;
 
 #[Layout('layouts.app')]
 class Status extends Component
@@ -33,6 +34,10 @@ class Status extends Component
             }
 
             $transaction->save();
+
+            if ($status == 'paid' && $transaction->user && $transaction->user->email) {
+                Mail::to($transaction->user->email)->send(new PaymentApprovedMail($transaction));
+            }
 
             $this->toastSuccess('Status Updated Successfully');
         }
