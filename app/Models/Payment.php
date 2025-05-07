@@ -23,4 +23,5 @@ class Payment extends Model
     {
         return $query->where('status', 'paid');
     }
+
 }

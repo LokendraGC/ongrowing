@@ -25,8 +25,23 @@
                         </ul>
                     </li>
 
-                    <li>
-                        <a href="fees.html"><i class="fas fa-calculator"></i> <span>Calculator</span></a>
+                    <li class="submenu {{ request()->routeIs('expense.*') ? 'active' : '' }}">
+                        <a href="#"><i class="fas fa-money-bill-wave"></i>
+                            <span>Expenses</span> <span
+                                class="menu-arrow"></span></a>
+                        <ul style="{{ request()->routeIs('expense.*') ? 'display: block;' : '' }}">
+                            <li><a class="{{ request()->routeIs('expense.add') ? 'active' : '' }}"
+                                    href="{{ route('expense.add') }}" wire:navigate class="submenu">Add Expense</a>
+                            </li>
+                            <li><a class="{{ request()->routeIs('expense.index') ? 'active' : '' }}"
+                                    href="{{ route('expense.index') }}" wire:navigate class="submenu">All Expenses</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="{{ request()->routeIs('basic.calculator') ? 'submenu active' : '' }}">
+                        <a href="{{ route('basic.calculator') }}" wire:navigate><i class="fas fa-calculator"></i>
+                            <span>Calculator</span></a>
                     </li>
                     <li class="submenu {{ request()->routeIs('user.*') ? 'active' : '' }}">
                         <a href="#">

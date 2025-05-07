@@ -3,7 +3,11 @@
 use App\Http\Controllers\DashboardController;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Logout;
+use App\Livewire\Calculator\CalculatorIndex;
 use App\Livewire\EditProfile;
+use App\Livewire\Expenses\AddExpenses;
+use App\Livewire\Expenses\AllExpenses;
+use App\Livewire\Expenses\EditExpenses;
 use App\Livewire\Payments\PaymentCreate;
 use App\Livewire\Payments\PaymentEdit;
 use App\Livewire\Payments\PaymentIndex;
@@ -28,6 +32,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile/{id}', Profile::class)->name('profile');
     Route::get('/edit-profile/{id}', EditProfile::class)->name('edit.profile');
+    Route::get('/calculator', CalculatorIndex::class)->name('basic.calculator');
+
+    // expenses
+    Route::get('/all-expenses',AllExpenses::class)->name('expense.index');
+    Route::get('/add-expense',AddExpenses::class)->name('expense.add');
+    Route::get('/edit-expense/{id}',EditExpenses::class)->name('expense.edit');
 
     // payments
     Route::get('pay', PaymentCreate::class)->name('pay.add');

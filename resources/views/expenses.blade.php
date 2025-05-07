@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Expenses for {{ $to }}</title>
+    <title>Transactions for {{ $to }}</title>
     <style>
         table, th, td {
             border: 1px solid black;
@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-    <h2>Expense Report</h2>
+    <h2>Transaction Report</h2>
     <p>User: <strong>{{ $to }}</strong></p>
 
     <table width="100%">
@@ -21,15 +21,16 @@
                 <th>#</th>
                 <th>Date</th>
                 <th>Amount</th>
+                <th>Detail</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($payments as $index => $payment)
+            @foreach($expenses as $index => $expense)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $payment->pay_date }}</td>
-                    <td>{{ $payment->status == 'paid' ? $payment->amount : $payment->temp_amount }}</td>
-                    <td>{{ ucfirst($payment->status) }}</td>
+                    <td>{{ $expense->invest_date }}</td>
+                    <td>{{ $expense->expense_amount }}</td>
+                    <td>{{ $expense->detail }}</td>
                 </tr>
             @endforeach
         </tbody>

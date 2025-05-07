@@ -23,6 +23,7 @@ class PaymentEdit extends Component
     public $user_id;
     public $payment;
 
+
     public function mount($id)
     {
         $payment = Payment::find($id);
