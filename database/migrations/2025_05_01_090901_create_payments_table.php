@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->decimal('amount', 10, 2)->nullable();
             $table->decimal('temp_amount', 10, 2)->nullable();
+            $table->integer('kitta');
             $table->string('slip');
             $table->enum('status', ['pending', 'approved'])->default('pending');
             $table->date('date_of_transaction');

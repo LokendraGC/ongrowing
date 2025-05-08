@@ -8,6 +8,7 @@ use App\Livewire\EditProfile;
 use App\Livewire\Expenses\AddExpenses;
 use App\Livewire\Expenses\AllExpenses;
 use App\Livewire\Expenses\EditExpenses;
+use App\Livewire\Payments\AddKitta;
 use App\Livewire\Payments\PaymentCreate;
 use App\Livewire\Payments\PaymentEdit;
 use App\Livewire\Payments\PaymentIndex;
