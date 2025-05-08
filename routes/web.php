@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/{id}', Profile::class)->name('profile');
     Route::get('/edit-profile/{id}', EditProfile::class)->name('edit.profile');
     Route::get('/calculator', CalculatorIndex::class)->name('basic.calculator');
+    Route::get('/users', UserIndex::class)->name('user.index');
 
     // expenses
     Route::get('/all-expenses',AllExpenses::class)->name('expense.index');
@@ -46,7 +47,6 @@ Route::middleware('auth')->group(function () {
 
     // Admin-only routes
     Route::middleware('role:admin')->group(function () {
-        Route::get('/users', UserIndex::class)->name('user.index');
         Route::get('/add-user', UserCreate::class)->name('user.create');
         Route::get('/edit-user/{id}', UserEdit::class)->name('user.edit');
         Route::get('status', Status::class)->name('pay.status');
