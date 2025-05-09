@@ -12,9 +12,11 @@
 
 <script type="text/javascript">
     document.addEventListener("toast.success", event => {
+        event.preventDefault();
         toastr.success(event.detail.message);
     });
     document.addEventListener("toast.error", event => {
+        event.preventDefault();
         toastr.error(event.detail.message);
     });
 </script>
