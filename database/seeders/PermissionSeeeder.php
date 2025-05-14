@@ -19,6 +19,7 @@ class PermissionSeeeder extends Seeder
             'add.user',
             'edit.user',
             'delete.user',
+            'edit.status'
         ];
 
         foreach ($permissions as $key => $value) {

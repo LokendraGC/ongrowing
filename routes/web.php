@@ -8,7 +8,6 @@ use App\Livewire\EditProfile;
 use App\Livewire\Expenses\AddExpenses;
 use App\Livewire\Expenses\AllExpenses;
 use App\Livewire\Expenses\EditExpenses;
-use App\Livewire\Payments\AddKitta;
 use App\Livewire\Payments\PaymentCreate;
 use App\Livewire\Payments\PaymentEdit;
 use App\Livewire\Payments\PaymentIndex;
@@ -17,6 +16,7 @@ use App\Livewire\Profile;
 use App\Livewire\Users\UserCreate;
 use App\Livewire\Users\UserEdit;
 use App\Livewire\Users\UserIndex;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -45,14 +45,19 @@ Route::middleware('auth')->group(function () {
     Route::get('pay', PaymentCreate::class)->name('pay.add');
     Route::get('transactions', PaymentIndex::class)->name('pay.index');
     Route::get('edit-payment/{id}', PaymentEdit::class)->name('pay.edit');
+    Route::get('/all-transactions', Status::class)->name('pay.status');
 
     // Admin-only routes
     Route::middleware('role:admin')->group(function () {
         Route::get('/add-user', UserCreate::class)->name('user.create');
         Route::get('/edit-user/{id}', UserEdit::class)->name('user.edit');
-        Route::get('status', Status::class)->name('pay.status');
     });
 
     // User-only routes (if different from admin, otherwise skip this)
     Route::middleware('role:user')->group(function () {});
+});
+
+
+Route::get('storage', function () {
+    Artisan::call('storage:link');
 });

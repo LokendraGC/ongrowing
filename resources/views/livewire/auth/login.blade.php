@@ -6,8 +6,15 @@
                     <div class="login-left">
                         <img class="img-fluid" src="assets/img/logo-white.png" alt="Logo">
                     </div>
+
+
                     <div class="login-right">
                         <div class="login-right-wrap">
+                            @if ($errorMessage)
+                                <div class="alert alert-danger">
+                                    {{ $errorMessage }}
+                                </div>
+                            @endif
                             <h1>Login</h1>
                             <p class="account-subtitle">Access to our dashboard</p>
                             <form wire:submit = "login">

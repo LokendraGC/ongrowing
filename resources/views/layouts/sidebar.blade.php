@@ -18,17 +18,14 @@
                                     href="{{ route('pay.add') }}" wire:navigate class="submenu">Pay</a></li>
                             <li><a class="{{ request()->routeIs('pay.index') ? 'active' : '' }}"
                                     href="{{ route('pay.index') }}" wire:navigate class="submenu">Transactions</a></li>
-                            @hasrole('admin')
-                                <li><a class="{{ request()->routeIs('pay.status') ? 'active' : '' }}"
-                                        href="{{ route('pay.status') }}" wire:navigate class="submenu">Status</a></li>
-                            @endhasrole
+                            <li><a class="{{ request()->routeIs('pay.status') ? 'active' : '' }}"
+                                    href="{{ route('pay.status') }}" wire:navigate class="submenu">All Transactions</a></li>
                         </ul>
                     </li>
 
                     <li class="submenu {{ request()->routeIs('expense.*') ? 'active' : '' }}">
                         <a href="#"><i class="fas fa-money-bill-wave"></i>
-                            <span>Expenses</span> <span
-                                class="menu-arrow"></span></a>
+                            <span>Expenses</span> <span class="menu-arrow"></span></a>
                         <ul style="{{ request()->routeIs('expense.*') ? 'display: block;' : '' }}">
                             <li><a class="{{ request()->routeIs('expense.add') ? 'active' : '' }}"
                                     href="{{ route('expense.add') }}" wire:navigate class="submenu">Add Expense</a>

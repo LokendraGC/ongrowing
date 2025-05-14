@@ -29,7 +29,9 @@
                                     <th>Name</th>
                                     <th>Date</th>
                                     <th>Amount</th>
-                                    <th class="text-center">Status</th>
+                                    @hasrole('admin')
+                                        <th class="text-center">Status</th>
+                                    @endhasrole
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,21 +50,25 @@
                                         <td>{{ $transaction->pay_date }}</td>
                                         <td>{{ $transaction->status == 'paid' ? $transaction->amount : $transaction->temp_amount }}
                                         </td>
-                                        <td class="text-right">
-                                            {{-- <span class="badge badge-success">Paid</span> --}}
-                                            <div class="form-group">
-                                                <select class="form-control"
-                                                    wire:change="updateStatus({{ $transaction->id }}, $event.target.value)">
-                                                    <option value="pending"
-                                                        {{ $transaction->status == 'pending' ? 'selected' : '' }}>
-                                                        Pending</option>
-                                                    <option value="paid"
-                                                        {{ $transaction->status == 'paid' ? 'selected' : '' }}>Paid
-                                                    </option>
-                                                </select>
-                                            </div>
 
-                                        </td>
+                                        @hasrole('admin')
+                                            <td class="text-right">
+                                                {{-- <span class="badge badge-success">Paid</span> --}}
+                                                <div class="form-group">
+                                                    <select class="form-control"
+                                                        wire:change="updateStatus({{ $transaction->id }}, $event.target.value)">
+                                                        <option value="pending"
+                                                            {{ $transaction->status == 'pending' ? 'selected' : '' }}>
+                                                            Pending</option>
+                                                        <option value="paid"
+                                                            {{ $transaction->status == 'paid' ? 'selected' : '' }}>Paid
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                            </td>
+                                        @endhasrole
+
                                     </tr>
                                 @endforeach
 
