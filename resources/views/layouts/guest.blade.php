@@ -24,6 +24,4 @@
 @yield('custom-js')
 @include('shared.jsfiles')
 
-
-
 </html>

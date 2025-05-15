@@ -37,6 +37,22 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            @if ($roles)
+                                <div class="col-12 col-sm-6">
+                                    <label>Choose Role</label>
+                                    <div class="form-group">
+                                        <select class="form-control" wire:change="chooseRole($event.target.value)">
+                                            <option value="">Select Role</option>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role->id }}" {{ $user->getRoleNames()->first() == $role->name ? 'selected' : '' }}>
+                                                    {{ $role->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            @endif
+
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <label>Temporary Address</label>
@@ -90,6 +106,7 @@
                                 <div class="form-group">
                                     <label>User Profile</label>
                                     <input wire:model.live="profile" type="file" class="form-control">
+                                   
                                     @if (is_string($profile))
                                         <div class="position-relative d-inline-block">
                                             <img class="rounded" src="{{ asset('storage/' . $profile) }}" width="50"

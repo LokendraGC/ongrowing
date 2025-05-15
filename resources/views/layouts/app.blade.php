@@ -8,8 +8,10 @@
 
 
 
+    @livewireStyles
     @include('shared.cssfiles')
     @yield('custom-css')
+
 </head>
 
 <body>
@@ -32,12 +34,14 @@
         </div>
     </div>
 
+    <x-toaster-hub />
+
+    @livewireScripts
+    @yield('custom-js')
+    @include('shared.jsfiles')
+
 </body>
 
-<x-toaster-hub />
-
-@yield('custom-js')
-@include('shared.jsfiles')
 
 
 

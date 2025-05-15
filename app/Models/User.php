@@ -29,6 +29,7 @@ class User extends Authenticatable
         'temp_address',
         'permanent_address',
         'phone',
+        'role'
     ];
 
     /**

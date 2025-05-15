@@ -10,6 +10,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Illuminate\Validation\Rules;
 use Livewire\WithFileUploads;
+use Spatie\Permission\Models\Role;
 
 #[Layout('layouts.app')]
 class UserCreate extends Component
@@ -27,7 +28,18 @@ class UserCreate extends Component
     public $permanent_address = '';
     public $profile;
     public $phone = '';
+    public $roleName = '';
 
+
+    public function chooseRole($roleId)
+    {
+        $role = Role::find($roleId);
+        if (!$role) {
+            $this->toastError("Role not found");
+            return;
+        }
+        $this->roleName = $role->name;
+    }
 
     public function createUser()
     {
@@ -67,7 +79,7 @@ class UserCreate extends Component
             'permanent_address' => $this->permanent_address,
         ]);
 
-        $user->assignRole('user');
+        $user->assignRole($this->roleName);
 
         $this->toastSuccess("User Created in Successfully");
 
@@ -77,6 +89,8 @@ class UserCreate extends Component
 
     public function render()
     {
-        return view('livewire.users.user-create');
+        return view('livewire.users.user-create', [
+            'roles' => Role::all(),
+        ]);
     }
 }

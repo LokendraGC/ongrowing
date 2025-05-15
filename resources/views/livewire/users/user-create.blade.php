@@ -37,13 +37,29 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            @if ($roles)
+                                <div class="col-12 col-sm-6">
+                                    <label>Choose Role</label>
+                                    <div class="form-group">
+                                        <select class="form-control" wire:change="chooseRole($event.target.value)">
+                                            <option value="">Select Role</option>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role->id }}">
+                                                    {{ $role->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            @endif
+
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <label>Temporary Address</label>
                                     <input wire:model="temp_address" type="text" class="form-control">
                                     @error('temp_address')
-                                    <span class="text-sm text-danger">{{ $message }}</span>
-                                @enderror
+                                        <span class="text-sm text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
@@ -91,8 +107,8 @@
                                     <label>User Profile</label>
                                     <input wire:model.live="profile" type="file" class="form-control">
                                     @error('profile')
-                                    <span class="text-sm text-danger">{{ $message }}</span>
-                                @enderror
+                                        <span class="text-sm text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
@@ -100,8 +116,8 @@
                                     <label>Password</label>
                                     <input wire:model="password" type="password" class="form-control">
                                     @error('password')
-                                    <span class="text-sm text-danger">{{ $message }}</span>
-                                @enderror
+                                        <span class="text-sm text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
@@ -109,8 +125,8 @@
                                     <label>Confirm Password</label>
                                     <input wire:model="password_confirmation" type="password" class="form-control">
                                     @error('password_confirmation')
-                                    <span class="text-sm text-danger">{{ $message }}</span>
-                                @enderror
+                                        <span class="text-sm text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 

@@ -12,6 +12,7 @@ use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
+use Spatie\Permission\Models\Role;
 
 #[Layout('layouts.app')]
 class UserEdit extends Component
@@ -30,6 +31,18 @@ class UserEdit extends Component
     public $permanent_address = '';
     public $profile;
     public $phone = '';
+    public $roleName = '';
+
+
+    public function chooseRole($roleId)
+    {
+        $role = Role::find($roleId);
+        if (!$role) {
+            $this->toastError("Role not found");
+            return;
+        }
+        $this->roleName = $role->name;
+    }
 
     public function mount($id)
     {
@@ -40,6 +53,7 @@ class UserEdit extends Component
         }
 
         $this->user = $user;
+
 
         $this->fill([
             'name' => $user->name,
@@ -103,6 +117,7 @@ class UserEdit extends Component
             }
         }
 
+
         $this->user->update([
             'name' => $this->name,
             'email' => $this->email,
@@ -114,6 +129,17 @@ class UserEdit extends Component
             'temp_address' => $this->temp_address,
             'permanent_address' => $this->permanent_address,
         ]);
+
+        // assign role
+        if ($this->roleName) {
+            $role = Role::where('name', $this->roleName)->first();
+            if ($role) {
+                $this->user->syncRoles($role);
+            } else {
+                $this->toastError("Role not found");
+                return;
+            }
+        }
 
         $this->toastSuccess("User updated successfully.");
         return redirect()->route('user.index');
@@ -127,6 +153,8 @@ class UserEdit extends Component
 
     public function render()
     {
-        return view('livewire.users.user-edit');
+        return view('livewire.users.user-edit', [
+            'roles' => Role::all(),
+        ]);
     }
 }
