@@ -12,7 +12,6 @@ use Livewire\Component;
 #[Layout('layouts.app')]
 class PaymentIndex extends Component
 {
-
     use HasToastNotifications;
 
     public $payments;

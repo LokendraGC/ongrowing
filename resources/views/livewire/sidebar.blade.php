@@ -10,7 +10,7 @@
                         <a href="{{ route('dashboard') }}" wire:navigate><i class="fas fa-tachometer-alt"></i>
                             <span>Dashboard</span></a>
                     </li>
-                    <li class="submenu {{ request()->routeIs('pay.*') ? 'active' : '' }}" wire:ignore>
+                    <li class="submenu {{ request()->routeIs('pay.*') ? 'active' : '' }}">
                         <a href="#"><i class="fas fa-comment-dollar"></i> <span>Payment Detail</span> <span
                                 class="menu-arrow"></span></a>
                         <ul style="{{ request()->routeIs('pay.*') ? 'display: block;' : '' }}">
@@ -19,11 +19,12 @@
                             <li><a class="{{ request()->routeIs('pay.index') ? 'active' : '' }}"
                                     href="{{ route('pay.index') }}" wire:navigate class="submenu">Transactions</a></li>
                             <li><a class="{{ request()->routeIs('pay.status') ? 'active' : '' }}"
-                                    href="{{ route('pay.status') }}" wire:navigate class="submenu">All Transactions</a></li>
+                                    href="{{ route('pay.status') }}" wire:navigate class="submenu">All Transactions</a>
+                            </li>
                         </ul>
                     </li>
 
-                    <li class="submenu {{ request()->routeIs('expense.*') ? 'active' : '' }}"wire:ignore>
+                    <li class="submenu {{ request()->routeIs('expense.*') ? 'active' : '' }}">
                         <a href="#"><i class="fas fa-money-bill-wave"></i>
                             <span>Expenses</span> <span class="menu-arrow"></span></a>
                         <ul style="{{ request()->routeIs('expense.*') ? 'display: block;' : '' }}">
@@ -72,5 +73,4 @@
         </div>
     </div>
 </div>
-
 

@@ -106,7 +106,7 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item dropdown has-arrow">
+            <li class="nav-item dropdown has-arrow" wire:ignore>
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                     <span class="user-img"><img class="rounded-circle"
                             src="{{ auth()->user()->profile ? asset('storage/' . auth()->user()->profile) : asset('assets/img/profiles/avatar-03.jpg') }}"
@@ -132,4 +132,3 @@
         </ul>
     </div>
 </div>
-

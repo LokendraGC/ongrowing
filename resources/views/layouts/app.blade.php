@@ -19,7 +19,9 @@
 
         @include('layouts.header')
 
-        @include('layouts.sidebar')
+        <livewire:sidebar />
+
+        {{-- @include('layouts.sidebar') --}}
 
         <div class="page-wrapper">
 
@@ -38,7 +40,18 @@
 
     @livewireScripts
     @yield('custom-js')
+
     @include('shared.jsfiles')
+
+    <script>
+        document.addEventListener("livewire:load", function() {
+            // Re-initialize dropdowns on every Livewire update
+            Livewire.hook('message.processed', (message, component) => {
+                $('[data-toggle="dropdown"]').dropdown(); // for Bootstrap 4
+            });
+        });
+    </script>
+
 
 </body>
 
