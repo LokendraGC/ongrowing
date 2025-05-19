@@ -21,6 +21,7 @@
             <i class="fas fa-bars"></i>
         </a>
         <ul class="nav user-menu">
+            {{--
             <li class="nav-item dropdown noti-dropdown">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                     <i class="far fa-bell"></i> <span class="badge badge-pill">3</span>
@@ -105,7 +106,11 @@
                         <a href="#">View all Notifications</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
+
+            <livewire:notifications.all-notifications />
+
+
             <li class="nav-item dropdown has-arrow" wire:ignore>
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                     <span class="user-img"><img class="rounded-circle"
@@ -132,4 +137,3 @@
         </ul>
     </div>
 </div>
-

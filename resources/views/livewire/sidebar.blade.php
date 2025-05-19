@@ -41,6 +41,11 @@
                         <a href="{{ route('basic.calculator') }}" wire:navigate><i class="fas fa-calculator"></i>
                             <span>Calculator</span></a>
                     </li>
+
+                    <li class="{{ request()->routeIs('notification.index') ? 'submenu active' : '' }}">
+                        <a href="{{ route('notification.index') }}" wire:navigate><i class="fas fa-bell"></i>
+                            <span>Notifications</span></a>
+                    </li>
                     <li wire:ignore class="submenu {{ request()->routeIs('user.*') ? 'active' : '' }}">
                         <a href="#">
                             <i class="fas fa-users"></i>
@@ -73,5 +78,3 @@
         </div>
     </div>
 </div>
-
-

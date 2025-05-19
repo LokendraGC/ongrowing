@@ -21,8 +21,6 @@
 
         <livewire:sidebar />
 
-        {{-- @include('layouts.sidebar') --}}
-
         <div class="page-wrapper">
 
             @hasSection('main-content')
