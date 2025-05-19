@@ -53,6 +53,37 @@
     </script>
 
 
+<script>
+    function initSidebarDropdowns() {
+        // Toggle submenu visibility on click
+        $('.sidebar .submenu > a').off('click').on('click', function (e) {
+            e.preventDefault();
+            var $submenu = $(this).next('ul');
+
+            if (!$submenu.is(':visible')) {
+                // Close all open submenus
+                $('.sidebar .submenu ul:visible').slideUp(200);
+                $('.sidebar .submenu').removeClass('active');
+            }
+
+            // Toggle current submenu
+            $submenu.slideToggle(200);
+            $(this).parent().toggleClass('active');
+        });
+    }
+
+    document.addEventListener('livewire:navigated', function () {
+        initSidebarDropdowns();
+    });
+
+    // Initial run
+    document.addEventListener('DOMContentLoaded', function () {
+        initSidebarDropdowns();
+    });
+</script>
+
+
+
 </body>
 
 

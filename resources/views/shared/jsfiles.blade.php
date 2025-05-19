@@ -1,12 +1,14 @@
 <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"data-navigate-once></script>
 <script src="{{ asset('assets/js/script.js') }}" data-navigate-once></script>
-<script src="{{ asset('assets/js/popper.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/apexchart/apexcharts.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/apexchart/chart-data.js') }}"></script>
-<script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}" ></script>
-<script src="{{ asset('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}" ></script>
+
+
+<script src="{{ asset('assets/js/popper.min.js') }}" data-navigate-track="reload"></script>
+<script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}" data-navigate-once></script>
+<script src="{{ asset('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}" data-navigate-track="reload"></script>
+<script src="{{ asset('assets/plugins/apexchart/apexcharts.min.js') }}" data-navigate-track="reload"></script>
+<script src="{{ asset('assets/plugins/apexchart/chart-data.js') }}" data-navigate-track="reload"></script>
+<script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"  data-navigate-track="reload"></script>
+<script src="{{ asset('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}"  data-navigate-track="reload"></script>
 
 
 

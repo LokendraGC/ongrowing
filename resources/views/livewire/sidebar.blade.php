@@ -10,7 +10,7 @@
                         <a href="{{ route('dashboard') }}" wire:navigate><i class="fas fa-tachometer-alt"></i>
                             <span>Dashboard</span></a>
                     </li>
-                    <li class="submenu {{ request()->routeIs('pay.*') ? 'active' : '' }}">
+                    <li wire:ignore class="submenu {{ request()->routeIs('pay.*') ? 'active' : '' }}">
                         <a href="#"><i class="fas fa-comment-dollar"></i> <span>Payment Detail</span> <span
                                 class="menu-arrow"></span></a>
                         <ul style="{{ request()->routeIs('pay.*') ? 'display: block;' : '' }}">
@@ -24,7 +24,7 @@
                         </ul>
                     </li>
 
-                    <li class="submenu {{ request()->routeIs('expense.*') ? 'active' : '' }}">
+                    <li wire:ignore class="submenu {{ request()->routeIs('expense.*') ? 'active' : '' }}">
                         <a href="#"><i class="fas fa-money-bill-wave"></i>
                             <span>Expenses</span> <span class="menu-arrow"></span></a>
                         <ul style="{{ request()->routeIs('expense.*') ? 'display: block;' : '' }}">
@@ -41,7 +41,7 @@
                         <a href="{{ route('basic.calculator') }}" wire:navigate><i class="fas fa-calculator"></i>
                             <span>Calculator</span></a>
                     </li>
-                    <li class="submenu {{ request()->routeIs('user.*') ? 'active' : '' }}">
+                    <li wire:ignore class="submenu {{ request()->routeIs('user.*') ? 'active' : '' }}">
                         <a href="#">
                             <i class="fas fa-users"></i>
                             <span>Users</span>
@@ -73,4 +73,5 @@
         </div>
     </div>
 </div>
+
 
