@@ -9,7 +9,7 @@
                     <li class="breadcrumb-item active">All Notifications</li>
                 </ul>
             </div>
-      
+
         </div>
     </div>
 

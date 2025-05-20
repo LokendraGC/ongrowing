@@ -5,7 +5,7 @@
     <div class="dropdown-menu notifications">
         <div class="topnav-dropdown-header">
             <span class="notification-title">Notifications</span>
-            {{-- <a href="javascript:void(0)" wire:click = "clearAll" class="clear-noti"> Clear All </a> --}}
+            <a href="javascript:void(0)" wire:click = "clearAll" class="clear-noti"> Clear All </a>
         </div>
         <div class="noti-content">
             @if (!$payments->isEmpty())

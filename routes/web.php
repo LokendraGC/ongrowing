@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Livewire\AddKitta;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Logout;
 use App\Livewire\Calculator\CalculatorIndex;
@@ -52,6 +53,7 @@ Route::middleware('auth')->group(function () {
     // Admin-only routes
     Route::middleware('role:admin')->group(function () {
         Route::get('/add-user', UserCreate::class)->name('user.create');
+        Route::get('/add-kitta', AddKitta::class)->name('add.kitta');
         Route::get('/edit-user/{id}', UserEdit::class)->name('user.edit');
     });
 

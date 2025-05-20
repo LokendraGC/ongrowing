@@ -10,24 +10,28 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+    public $per_kitta;
+
     public function index()
     {
 
         $total_amount = Payment::sum('amount');
-        $total_kitta = $total_amount / 10;
+        $payment = Payment::whereNotNull('per_kitta')->first();
+
+        $this->per_kitta = $payment->per_kitta;
+
+        $total_kitta = $total_amount / $this->per_kitta;
 
         $expense_amount = Expense::where('user_id', Auth::id())->sum('expense_amount');
 
         $grand_total = $total_amount;
-        $grand_total_kitta = $total_kitta;
 
         if ($expense_amount != 0 && $total_amount > $expense_amount) {
             $grand_total = $total_amount - $expense_amount;
-            $grand_total_kitta =  $grand_total / 10;
         }
         $user_amount = Payment::where('user_id', Auth::id())->sum('amount');
 
-        $user_kitta = $user_amount / 10;
+        $user_kitta = $user_amount / $this->per_kitta;
 
         // Monthly total payments
         $monthlyPayments = Payment::select(
@@ -48,10 +52,11 @@ class DashboardController extends Controller
         return view('dashboard', [
             'total_amount' => $grand_total,
             'user_amount' => $user_amount,
-            'total_kitta' => $grand_total_kitta,
+            'total_kitta' => $total_kitta,
             'user_kitta' => $user_kitta,
             'months' => $months,
             'totals' => $totals,
+            'per_kitta' => $this->per_kitta
         ]);
     }
 }

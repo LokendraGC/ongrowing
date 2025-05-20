@@ -8,9 +8,9 @@
                 <img src="{{ asset('assets/img/logo-small.png') }}" alt="Logo" width="30" height="30">
             </a>
         </div>
-        <a href="javascript:void(0);" id="toggle_btn">
-            <i class="fas fa-align-left"></i>
-        </a>
+            <a href="javascript:void(0);" id="toggle_btn">
+                <i class="fas fa-align-left"></i>
+            </a>
         <div class="top-nav-search">
             <form>
                 <input type="text" class="form-control" placeholder="Search here">

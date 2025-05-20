@@ -50,7 +50,7 @@
                                 <i class="fas fa-building"></i>
                             </div> --}}
                             <div class="db-info">
-                                <h3>{{ $total_kitta }} Kitta</h3>
+                                <h3>{{ number_format($total_kitta, 2) }} Kitta</h3>
                                 <h6>Total Share</h6>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                                 <i class="fas fa-file-invoice-dollar"></i>
                             </div> --}}
                             <div class="db-info">
-                                <h3>{{ $user_kitta }} Kitta</h3>
+                                <h3>{{ number_format($user_kitta, 2) }} Kitta</h3>
                                 <h6>Your Share</h6>
                             </div>
                         </div>

@@ -67,6 +67,14 @@
                                     </a>
                                 </li>
                             @endhasrole
+                            @hasrole('admin')
+                                <li>
+                                    <a href="{{ route('add.kitta') }}" wire:navigate
+                                        class="{{ request()->routeIs('add.kitta') ? 'active' : '' }}">
+                                        Add Kitta
+                                    </a>
+                                </li>
+                            @endhasrole
                         </ul>
                     </li>
 
