@@ -51,13 +51,25 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->getRoleNames()->first() }}</td>
                                         @can('add.user')
-                                            <td class="text-center">
+                                            {{-- <td class="text-center">
                                                 <a href="{{ route('user.edit', $user->id) }}" wire:navigate
                                                     class="badge badge-success border-0 px-4 py-2">Edit</a>
                                                 <button wire:click="$set('confirmingDelete', {{ $user->id }})"
                                                     type="submit"
                                                     class="badge badge-success border-0 px-3 py-2">Delete</button>
+                                            </td> --}}
+
+                                            <td class="text-center">
+                                                <div class="actions">
+                                                    <a href="{{ route('user.edit', $user->id) }}"  wire:navigate class="btn btn-sm bg-success-light mr-2">
+                                                        <i class="fas fa-pen"></i>
+                                                    </a>
+                                                    <button wire:click="$set('confirmingDelete', {{ $user->id }})" type="submit" class="btn btn-sm bg-danger-light">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
                                             </td>
+
                                         @endcan
                                     </tr>
                                 @endforeach

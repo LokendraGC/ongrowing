@@ -5,6 +5,7 @@ use App\Livewire\AddKitta;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Logout;
 use App\Livewire\Calculator\CalculatorIndex;
+use App\Livewire\ChangePassword;
 use App\Livewire\EditProfile;
 use App\Livewire\Expenses\AddExpenses;
 use App\Livewire\Expenses\AllExpenses;
@@ -34,6 +35,7 @@ Route::get('/logout', Logout::class)->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile/{id}', Profile::class)->name('profile');
+    Route::get('/change-password/{id}', ChangePassword::class)->name('change.password');
     Route::get('/edit-profile/{id}', EditProfile::class)->name('edit.profile');
     Route::get('/calculator', CalculatorIndex::class)->name('basic.calculator');
     Route::get('/users', UserIndex::class)->name('user.index');
