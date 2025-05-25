@@ -2,10 +2,9 @@
 
 namespace App\Livewire;
 
-use App\Models\Payment;
+use App\Models\Kitta;
 use App\Traits\HasToastNotifications;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Date;
+
 use Livewire\Component;
 
 class AddKitta extends Component
@@ -18,11 +17,13 @@ class AddKitta extends Component
     {
         // Find existing payment for logged-in user
 
-        $payment = Payment::whereNotNull('per_kitta')->first();
-        if ($payment) {
-            $this->per_kitta = $payment->per_kitta;
+        $kitta_number = Kitta::whereNotNull('per_kitta')->first();
+        if ($kitta_number) {
+            $this->per_kitta = $kitta_number->per_kitta;
         }
     }
+
+
 
     public function submitKitta()
     {
@@ -31,7 +32,7 @@ class AddKitta extends Component
         ]);
 
         // Check if user already has a Payment record
-        $payment = Payment::whereNotNull('per_kitta')->first();
+        $payment = Kitta::whereNotNull('per_kitta')->first();
 
         if ($payment) {
             // Update existing
@@ -41,11 +42,8 @@ class AddKitta extends Component
             $this->toastSuccess('Kitta updated successfully');
         } else {
             // Create new
-            Payment::create([
-                'per_kitta' => $data['per_kitta'],
-                'user_id' => Auth::id(),
-                'pay_date' => Date::now(),
-                'slip' => ''
+            Kitta::create([
+                'per_kitta' => $data['per_kitta'],      
             ]);
             $this->toastSuccess('Kitta added successfully');
         }

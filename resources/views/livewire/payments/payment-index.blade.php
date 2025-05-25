@@ -59,12 +59,18 @@
                                             </td>
                                         @endif
                                         <td class="text-center">
-                                            <a href="{{ route('pay.edit', $payment->id) }}" wire:navigate
-                                                class="badge badge-success border-0 px-4 py-2">Edit</a>
-                                            <button wire:click="$set('confirmingDelete', {{ $payment->id }})"
-                                                type="submit"
-                                                class="badge badge-success border-0 px-3 py-2">Delete</button>
+                                            <div class="actions">
+                                                <a href="{{ route('pay.edit', $payment->id) }}" wire:navigate
+                                                    class="btn btn-sm bg-success-light mr-2">
+                                                    <i class="fas fa-pen"></i>
+                                                </a>
+                                                <button wire:click="$set('confirmingDelete', {{ $payment->id }})"
+                                                    type="submit" class="btn btn-sm bg-danger-light">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
                                         </td>
+
                                     </tr>
                                 @endforeach
 

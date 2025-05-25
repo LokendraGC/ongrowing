@@ -41,9 +41,9 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle"
-                                                        src="{{ $transaction->slip ? asset('storage/' . $transaction->slip) : asset('assets/img/profiles/avatar-01.jpg') }}"
-                                                        alt="User Image"></a>
+                                                    <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle"
+                                                            src="{{ $transaction->slip ? asset('storage/' . $transaction->slip) : asset('assets/img/profiles/avatar-01.jpg') }}"
+                                                            alt="User Image"></a>
                                                 <a>{{ $transaction->user->name }}</a>
                                             </h2>
                                         </td>
