@@ -1,27 +1,26 @@
 <?php
 
-namespace App\Livewire\Investments;
+namespace App\Livewire\Profit;
 
 use App\Models\Cashflow;
 use App\Traits\HasToastNotifications;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Livewire\Attributes\Layout;
 
-#[Layout('layouts.app')]
-class InvestmentIndex extends Component
+class ProfitIndex extends Component
 {
+
     use HasToastNotifications;
 
-    public $investments;
+    public $profits;
     public $confirmingDelete = '';
 
 
     public function mount()
     {
-        $this->investments = Cashflow::where('flow_type', 'outflow')
-        ->where('user_id', Auth::id())
-        ->get();
+        $this->profits = Cashflow::where('flow_type', 'inflow')
+            ->where('user_id', Auth::id())
+            ->get();
 
     }
 
@@ -39,7 +38,7 @@ class InvestmentIndex extends Component
             $this->reset('confirmingDelete');
 
             $this->toastSuccess('Item Deleted Successfully');
-            return redirect()->route('expense.index');
+            return redirect()->route('profit.index');
         } catch (\Exception $e) {
             $this->toastError('Delete failed: ' . $e->getMessage());
             $this->reset('confirmingDelete');
@@ -48,6 +47,6 @@ class InvestmentIndex extends Component
 
     public function render()
     {
-        return view('livewire.investments.investment-index');
+        return view('livewire.profit.profit-index');
     }
 }

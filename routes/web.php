@@ -19,6 +19,9 @@ use App\Livewire\Payments\PaymentEdit;
 use App\Livewire\Payments\PaymentIndex;
 use App\Livewire\Payments\Status;
 use App\Livewire\Profile;
+use App\Livewire\Profit\ProfitAdd;
+use App\Livewire\Profit\ProfitEdit;
+use App\Livewire\Profit\ProfitIndex;
 use App\Livewire\Users\UserCreate;
 use App\Livewire\Users\UserEdit;
 use App\Livewire\Users\UserIndex;
@@ -55,6 +58,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/all-investment', InvestmentIndex::class)->name('investment.index');
     Route::get('/add-investment', InvestmentAdd::class)->name('investment.add');
     Route::get('/edit-investment/{id}', InvestmentEdit::class)->name('investment.edit');
+
+    // Profit
+    Route::get('/all-profit', ProfitIndex::class)->name('profit.index');
+    Route::get('/add-profit', ProfitAdd::class)->name('profit.add');
+    Route::get('/edit-profit/{id}', ProfitEdit::class)->name('profit.edit');
 
     // payments
     Route::get('pay', PaymentCreate::class)->name('pay.add');

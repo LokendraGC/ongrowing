@@ -3,18 +3,16 @@
     <div class="page-header">
         <div class="row align-items-center">
             <div class="col">
-                <h3 class="page-title">All Expenses</h3>
+                <h3 class="page-title">All Profit</h3>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" wire:navigate>Dashboard</a></li>
-                    <li class="breadcrumb-item active">Expenses</li>
+                    <li class="breadcrumb-item active">Profit</li>
                 </ul>
             </div>
             <div class="col-auto text-right float-right ml-auto">
-                <a href="{{ route('expense.add') }}" wire:navigate class="btn btn-outline-primary mr-2"><i
-                        class="fas fa-plus"></i> Add</a>
-                <a href="#" wire:click = "download" class="btn btn-outline-primary mr-2"><i
-                        class="fas fa-download"></i> Download</a>
-                {{-- <a href="add-fees-collection.html" class="btn btn-primary"><i class="fas fa-plus"></i></a> --}}
+                <a href="{{ route('profit.add') }}" wire:navigate class="btn btn-outline-primary mr-2"><i
+                        class="fas fa-plus"></i> Add Profit</a>
+
             </div>
         </div>
     </div>
@@ -29,48 +27,39 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Slip</th>
-                                    <th>Expense Amount</th>
-                                    <th>Inevst Date</th>
-                                    <th class="text-center">Reason</th>
+                                    <th>Profit Amount</th>
+                                    <th>Date</th>
+                                    <th class="text-center">Remarks</th>
                                     {{-- <th class="text-right">Status</th> --}}
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($expenses as $expense)
+                                @foreach ($profits as $profit)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
                                             <h2 class="table-avatar">
                                                 <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle"
-                                                        src="{{ $expense->slip ? asset('storage/' . $expense->slip) : asset('assets/img/profiles/avatar-01.jpg') }}"
+                                                        src="{{ $profit->profit_proof ? asset('storage/' . $profit->profit_proof) : asset('assets/img/profiles/avatar-01.jpg') }}"
                                                         alt="User Image"></a>
                                             </h2>
                                         </td>
-                                        <td>{{ $expense->expense_amount }}
+                                        <td>{{ $profit->profit_amount }}
                                         </td>
-                                        <td>{{ $expense->invest_date }}</td>
+                                        <td>{{ $profit->profit_date }}</td>
                                         <td>
-                                            {{ $expense->detail }}
+                                            {{ $profit->profit_remarks }}
                                         </td>
 
-                                        {{-- @if ($expense->status == 'pending')
-                                            <td class="text-right">
-                                                <span class="badge badge-danger">Pending</span>
-                                            </td>
-                                        @else
-                                            <td class="text-right">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        @endif --}}
 
-                                              <td class="text-center">
+                                        <td class="text-center">
                                             <div class="actions">
-                                                <a href="{{ route('expense.edit', $expense->id) }}" wire:navigate
+                                                <a href="{{ route('profit.edit', $profit->id) }}" wire:navigate
                                                     class="btn btn-sm bg-success-light mr-2">
                                                     <i class="fas fa-pen"></i>
                                                 </a>
-                                                    <button wire:click="$set('confirmingDelete', {{ $expense->id }})"
+                                                    <button wire:click="$set('confirmingDelete', {{ $profit->id }})"
                                                         type="submit" class="btn btn-sm bg-danger-light">
                                                         <i class="fas fa-trash"></i>
                                                     </button>

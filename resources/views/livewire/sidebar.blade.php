@@ -37,12 +37,12 @@
                         </ul>
                     </li>
 
-                    <li wire:ignore class="submenu {{ request()->routeIs('expense.*') ? 'active' : '' }}">
+                    <li wire:ignore class="submenu {{ request()->routeIs('profit', 'investment.*') ? 'active' : '' }}">
                         <a href="#"><i class="fas fa-chart-line"></i>
                             <span>Cashflow</span> <span class="menu-arrow"></span></a>
-                        <ul style="{{ request()->routeIs('expense.*') ? 'display: block;' : '' }}">
-                            <li><a class="{{ request()->routeIs('expense.add') ? 'active' : '' }}"
-                                    href="{{ route('expense.add') }}" wire:navigate class="submenu">Inflow</a>
+                        <ul style="{{ request()->routeIs('profit', 'investment.*') ? 'display: block;' : '' }}">
+                            <li><a class="{{ request()->routeIs('profit.index') ? 'active' : '' }}"
+                                    href="{{ route('profit.index') }}" wire:navigate class="submenu">Inflow</a>
                             </li>
                             <li><a class="{{ request()->routeIs('investment.index') ? 'active' : '' }}"
                                     href="{{ route('investment.index') }}" wire:navigate class="submenu">Outflow</a>
