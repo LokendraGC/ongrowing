@@ -10,6 +10,9 @@ use App\Livewire\EditProfile;
 use App\Livewire\Expenses\AddExpenses;
 use App\Livewire\Expenses\AllExpenses;
 use App\Livewire\Expenses\EditExpenses;
+use App\Livewire\Investments\InvestmentAdd;
+use App\Livewire\Investments\InvestmentEdit;
+use App\Livewire\Investments\InvestmentIndex;
 use App\Livewire\Notifications\NotificationIndex;
 use App\Livewire\Payments\PaymentCreate;
 use App\Livewire\Payments\PaymentEdit;
@@ -41,10 +44,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/users', UserIndex::class)->name('user.index');
     Route::get('/notifications', NotificationIndex::class)->name('notification.index');
 
+
     // expenses
     Route::get('/all-expenses', AllExpenses::class)->name('expense.index');
     Route::get('/add-expense', AddExpenses::class)->name('expense.add');
     Route::get('/edit-expense/{id}', EditExpenses::class)->name('expense.edit');
+
+
+    // Investment
+    Route::get('/all-investment', InvestmentIndex::class)->name('investment.index');
+    Route::get('/add-investment', InvestmentAdd::class)->name('investment.add');
+    Route::get('/edit-investment/{id}', InvestmentEdit::class)->name('investment.edit');
 
     // payments
     Route::get('pay', PaymentCreate::class)->name('pay.add');

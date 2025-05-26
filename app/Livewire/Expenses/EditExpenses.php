@@ -18,7 +18,6 @@ class EditExpenses extends Component
 
     use HasToastNotifications, WithFileUploads;
 
-
     public $expense_amount = '';
     public $slip;
     public $invest_date;

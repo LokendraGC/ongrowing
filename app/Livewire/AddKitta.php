@@ -43,7 +43,7 @@ class AddKitta extends Component
         } else {
             // Create new
             Kitta::create([
-                'per_kitta' => $data['per_kitta'],      
+                'per_kitta' => $data['per_kitta'],
             ]);
             $this->toastSuccess('Kitta added successfully');
         }

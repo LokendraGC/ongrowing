@@ -37,6 +37,19 @@
                         </ul>
                     </li>
 
+                    <li wire:ignore class="submenu {{ request()->routeIs('expense.*') ? 'active' : '' }}">
+                        <a href="#"><i class="fas fa-chart-line"></i>
+                            <span>Cashflow</span> <span class="menu-arrow"></span></a>
+                        <ul style="{{ request()->routeIs('expense.*') ? 'display: block;' : '' }}">
+                            <li><a class="{{ request()->routeIs('expense.add') ? 'active' : '' }}"
+                                    href="{{ route('expense.add') }}" wire:navigate class="submenu">Inflow</a>
+                            </li>
+                            <li><a class="{{ request()->routeIs('investment.index') ? 'active' : '' }}"
+                                    href="{{ route('investment.index') }}" wire:navigate class="submenu">Outflow</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="{{ request()->routeIs('basic.calculator') ? 'submenu active' : '' }}">
                         <a href="{{ route('basic.calculator') }}" wire:navigate><i class="fas fa-calculator"></i>
                             <span>Calculator</span></a>
